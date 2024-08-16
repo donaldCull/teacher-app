@@ -26,7 +26,7 @@ export default function RootLayout() {
     <QueryProvider>
       <ThemeProvider value={DefaultTheme}>
         <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="index" options={{ title: "Employees" }} />
         </Stack>
       </ThemeProvider>
     </QueryProvider>
