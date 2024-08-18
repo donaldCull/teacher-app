@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 
-export default function EmptyEmployeeList() {
+export default function EmptyListItem() {
 return (
   <View style={[styles.wrapper, styles.shadowProp]}>
     <Text style={{ fontSize: 18}}>Sorry we don't have any data at this point.</Text>
