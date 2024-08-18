@@ -16,9 +16,9 @@ export default function ScheduleItem({ lesson }: ScheduleItemProps) {
         <Text>Subject: {lesson.data.subject}</Text>
       </View>
       <View style={styles.cardSection}>
-        <View style={{ flexDirection: 'row', alignItems: "center"}}>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
           <FontAwesome name="user" size={18} color="#4b90fe" />
-          <Text style={{ fontWeight: 600,fontSize: 18, marginLeft: 4 }}>
+          <Text style={{ fontWeight: 600, fontSize: 18, marginLeft: 4 }}>
             {lesson.data.students.data.length}
           </Text>
         </View>

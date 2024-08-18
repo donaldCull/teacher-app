@@ -18,7 +18,7 @@ export const useData = <TResponse>(endpoint: string) => {
         setLoading(false);
         setError(error);
       });
-  }, []);
+  }, [endpoint]);
 
   return { data, error, isLoading };
 };

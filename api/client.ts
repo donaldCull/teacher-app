@@ -4,7 +4,7 @@
  * @returns Promise of TResponse
  */
 export async function request<TResponse>(
-  requestPath: string
+  requestPath: string,
 ): Promise<TResponse> {
   const apiUrl = process.env.EXPO_PUBLIC_API_URL;
   const auth = process.env.EXPO_PUBLIC_API_AUTH;

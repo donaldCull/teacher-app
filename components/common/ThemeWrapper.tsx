@@ -5,9 +5,12 @@ type PropsWithChildren<P> = P & { children?: ReactNode };
 
 type ThemeWrapperProps = {
   centerItem?: boolean;
-}
+};
 
-export default function ThemeWrapper({children, centerItem}: PropsWithChildren<ThemeWrapperProps>) {
+export default function ThemeWrapper({
+  children,
+  centerItem,
+}: PropsWithChildren<ThemeWrapperProps>) {
   return (
     <View style={[styles.wrapper, centerItem ? styles.centerItem : null]}>
       {children}

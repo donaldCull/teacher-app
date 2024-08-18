@@ -1,6 +1,10 @@
-import { api } from "@/api/client";
 import { useData } from "@/hooks/useData";
-import { useContext, createContext, type PropsWithChildren, useState } from "react";
+import {
+  useContext,
+  createContext,
+  type PropsWithChildren,
+  useState,
+} from "react";
 
 const QueryContext = createContext<{
   useData: <TResponse>(endpoint: string) => {
@@ -17,7 +21,7 @@ const QueryContext = createContext<{
   employee: "",
   setEmployee: () => null,
   classes: [],
-  setClasses: () => null
+  setClasses: () => null,
 });
 
 export function useQuery() {
@@ -33,7 +37,7 @@ export function useQuery() {
 
 export function QueryProvider({ children }: PropsWithChildren) {
   const [employee, setEmployee] = useState<string>("");
-  const [classes, setClasses] = useState<Array<string>>([]);
+  const [classes, setClasses] = useState<string[]>([]);
 
   return (
     <QueryContext.Provider
@@ -41,12 +45,12 @@ export function QueryProvider({ children }: PropsWithChildren) {
         useData,
         employee,
         setEmployee: (id) => {
-          setEmployee(id)
+          setEmployee(id);
         },
         classes,
         setClasses: (classes) => {
-          setClasses(classes)
-        }
+          setClasses(classes);
+        },
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-import { EmployeeClass, EmployeeClasses } from "./employeeClass";
+import { EmployeeClasses } from "./employeeClass";
 
 export type Employee = {
   id: string;
@@ -14,12 +14,5 @@ type EmploymentDetails = {
     current: boolean;
   };
 };
-type Classes = {
-  data: [
-    {
-      id: string;
-    }
-  ];
-};
 
-export type Employees = { data: Array<Employee> };
+export type Employees = { data: Employee[] };

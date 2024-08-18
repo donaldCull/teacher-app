@@ -1,8 +1,8 @@
 export type EmployeeClass = {
-    id: string;
-    name: string;
-    description: string;
-    subject: string;
+  id: string;
+  name: string;
+  description: string;
+  subject: string;
 };
 
 export type ClassData = {
@@ -13,8 +13,8 @@ export type ClassData = {
     subject: string;
     students: Students;
     lessons: Lessons;
-  }
-}
+  };
+};
 
 type Students = {
   data: [
@@ -22,15 +22,15 @@ type Students = {
       id: string;
       surname: string;
       forename: string;
-    }
+    },
   ];
 };
 type Lessons = {
   data: [
     {
       id: string;
-    }
+    },
   ];
 };
 
-export type EmployeeClasses = { data: Array<EmployeeClass>};
+export type EmployeeClasses = { data: EmployeeClass[] };

@@ -1,7 +1,7 @@
 import { Employee } from "@/types/employee";
-import { StyleSheet, View, Text, Image, Pressable } from "react-native";
+import { StyleSheet, View, Text, Pressable } from "react-native";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
-import { Href, Link } from "expo-router";
+import { Link } from "expo-router";
 import { useQuery } from "@/context/QueryProvider";
 
 type EmployeeCardProps = { employee: Employee };
@@ -10,8 +10,8 @@ export default function EmployeeCard({ employee }: EmployeeCardProps) {
   const { setClasses, setEmployee } = useQuery();
   const onPressHandler = () => {
     setEmployee(employee.id);
-    setClasses(employee.classes.data.map((cl) => cl.id))
-  }
+    setClasses(employee.classes.data.map((cl) => cl.id));
+  };
   return (
     <Link
       style={[styles.card, styles.shadowProp]}
