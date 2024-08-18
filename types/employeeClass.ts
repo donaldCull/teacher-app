@@ -17,11 +17,13 @@ export type ClassData = {
 }
 
 type Students = {
-  data: {
-    id: string;
-    surname: string;
-    forename: string;
-  };
+  data: [
+    {
+      id: string;
+      surname: string;
+      forename: string;
+    }
+  ];
 };
 type Lessons = {
   data: [
