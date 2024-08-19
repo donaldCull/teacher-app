@@ -1,33 +1,19 @@
 import { api } from "@/api/client";
+import ErrorItem from "@/components/common/ErrorItem";
 import LoadingSpinner from "@/components/common/LoadingSpinner";
 import ThemeWrapper from "@/components/common/ThemeWrapper";
 import ScheduleList from "@/components/employeeSchedule/ScheduleList";
 import { useQuery } from "@/context/QueryProvider";
-import { ClassData } from "@/types/employeeClass";
-import { useEffect, useState } from "react";
+import { useFetchClasses } from "@/hooks/useFetchClasses";
 
 export default function EmployeeSchedule() {
   const { classes } = useQuery();
-  const [employeeLessons, setEmployeeLessons] = useState<ClassData[]>([]);
-  const [isLoading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const getAllClassData = async () => {
-      const employeeClassList: ClassData[] = [];
-      setLoading(true);
-      for (const classId of classes) {
-        const response = await api.get<ClassData>(
-          `classes/${classId}?include=lessons,students`,
-        );
-        if (response) {
-          employeeClassList.push(response);
-        }
-      }
-      setEmployeeLessons(employeeClassList);
-      setLoading(false);
-    };
-    getAllClassData();
-  }, [classes]);
+  const { data, isLoading, error, fetchData } = useFetchClasses(classes)
+
+  if (error) {
+    return <ErrorItem refetch={fetchData}/>
+  }
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -35,7 +21,7 @@ export default function EmployeeSchedule() {
 
   return (
     <ThemeWrapper>
-      <ScheduleList schedule={employeeLessons} />
+      <ScheduleList schedule={data} />
     </ThemeWrapper>
   );
 }

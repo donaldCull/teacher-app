@@ -25,10 +25,20 @@ type Students = {
     },
   ];
 };
-type Lessons = {
+export type Lessons = {
   data: [
     {
       id: string;
+      start_at: {
+        date: string;
+        timezone_type: number;
+        timezone: string;
+      };
+      end_at: {
+        date: string;
+        timezone_type: number;
+        timezone: string;
+      };
     },
   ];
 };

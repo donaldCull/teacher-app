@@ -1,24 +1,27 @@
 import { api } from "@/api/client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export const useData = <TResponse>(endpoint: string) => {
   const [data, setData] = useState<TResponse | undefined>();
   const [error, setError] = useState<any>();
   const [isLoading, setLoading] = useState(false);
 
-  useEffect(() => {
-    setLoading(true);
-    api
-      .get<TResponse>(endpoint)
-      .then((response: TResponse) => {
-        setData(response);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setLoading(false);
-        setError(error);
-      });
+  const fetchData = useCallback(async () => {
+    setError(null);
+    try {
+      setLoading(true);
+      const response = await api.get<TResponse>(endpoint);
+      setData(response);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
   }, [endpoint]);
 
-  return { data, error, isLoading };
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  return { data, error, isLoading, fetchData };
 };

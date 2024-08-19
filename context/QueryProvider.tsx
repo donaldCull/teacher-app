@@ -11,6 +11,7 @@ const QueryContext = createContext<{
     data: TResponse | undefined;
     error: any;
     isLoading: boolean;
+    fetchData: () => Promise<void>;
   };
   employee: string;
   setEmployee: (id: string) => void;
