@@ -24,6 +24,11 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
     EXPO_PUBLIC_API_URL=EXPO_PUBLIC_API_URL
     EXPO_PUBLIC_API_AUTH=EXPO_PUBLIC_API_AUTH
    ```
+4. Run tests
+
+   ```bash
+    yarn test
+   ```
 
 ## Third-party libs used
 * [react native datepicker](https://github.com/react-native-datetimepicker/datetimepicker)
