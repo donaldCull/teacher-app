@@ -1,7 +1,9 @@
 import { ClassData, ClassLessons } from "@/types/employeeClass";
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { dateTime } from "@/utils/formatter";
+import EvilIcons from "@expo/vector-icons/EvilIcons";
+import { Href, Link } from "expo-router";
 
 type ScheduleItemProps = {
   lesson: ClassLessons;
@@ -10,32 +12,38 @@ type ScheduleItemProps = {
 export default function ScheduleItem({ lesson }: ScheduleItemProps) {
   const dt = dateTime();
   return (
-    <View style={[styles.card, styles.shadowProp]}>
-      <Text style={{ fontSize: 16, fontWeight: "bold" }}>Class</Text>
-      <View style={styles.cardSection}>
-        <Text>ID: {lesson.classId}</Text>
-        <Text>Name: {lesson.classTitle}</Text>
-        <Text>Subject: {lesson.subject}</Text>
-      </View>
-      <View style={styles.cardSection}>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <FontAwesome name="user" size={18} color="#4b90fe" />
-          <Text style={{ fontWeight: 600, fontSize: 18, marginLeft: 4 }}>
-            {lesson.students.data.length}
-          </Text>
+    <Link
+      style={[styles.card, styles.shadowProp]}
+      href={`lesson/${lesson.lessonId}` as Href}
+      asChild
+    >
+      <Pressable>
+        <View style={{ flexDirection: "column" }}>
+          <View style={styles.cardSection}>
+            <Text style={styles.cardTitle}>Class: {lesson.classTitle}</Text>
+            <View style={[styles.cardDetail, { marginLeft: 24 }]}>
+              <FontAwesome name="calendar" size={18} color="#4b90fe" />
+              <Text style={styles.detailText}>
+                {dt(lesson.start_at)} - {dt(lesson.end_at)}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.cardFooter}>
+            <View style={styles.cardDetail}>
+              <FontAwesome name="user" size={18} color="#4b90fe" />
+              <Text style={styles.detailText}>
+                {lesson.students.data.length}
+              </Text>
+            </View>
+            <View style={[styles.cardDetail, { marginLeft: 12 }]}>
+              <FontAwesome name="map-marker" size={18} color="#4b90fe" />
+              <Text style={styles.detailText}>{lesson.room}</Text>
+            </View>
+          </View>
         </View>
-      </View>
-      <View style={styles.cardSection}>
-      </View>
-      <View style={styles.cardSection}>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <FontAwesome name="calendar" size={18} color="#4b90fe" />
-          <Text style={{ fontWeight: 600, fontSize: 18, marginLeft: 4 }}>
-            {dt(lesson.start_at)} - {dt(lesson.end_at)}
-          </Text>
-        </View>
-      </View>
-    </View>
+        <EvilIcons name="chevron-right" size={50} color="#4b90fe" />
+      </Pressable>
+    </Link>
   );
 }
 
@@ -45,12 +53,31 @@ const styles = StyleSheet.create({
     padding: 12,
     margin: 8,
     borderRadius: 6,
-    flexDirection: "column",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: "600",
   },
   cardSection: {
+    padding: 4,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+  },
+  cardFooter: {
+    flexDirection: "row",
+    padding: 4,
+  },
+  cardDetail: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  detailText: {
+    fontSize: 18,
+    marginLeft: 4,
   },
   shadowProp: {
     shadowColor: "#171717",

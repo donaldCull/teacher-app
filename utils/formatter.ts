@@ -1,9 +1,6 @@
 
 export function dateTime(): (date: Date) => string {
   const formatter = new Intl.DateTimeFormat("en", {
-    year: "numeric",
-    month: "numeric",
-    day: "numeric",
     hour: "numeric",
     minute: "2-digit",
     hour12: true

@@ -1,6 +1,7 @@
 export type ClassLessons = {
   classId: string;
   classTitle: string;
+  room: string;
   subject: string;
   lessonId: string;
   start_at: Date;
@@ -28,19 +29,20 @@ export type ClassData = {
   };
 };
 
-type Students = {
-  data: [
-    {
-      id: string;
-      surname: string;
-      forename: string;
-    },
-  ];
+export type Student = {
+  id: string;
+  surname: string;
+  forename: string;
+}
+
+export type Students = {
+  data: Student[];
 };
 export type Lessons = {
   data: [
     {
       id: string;
+      room: string;
       start_at: {
         date: string;
         timezone_type: number;

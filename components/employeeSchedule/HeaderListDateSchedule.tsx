@@ -1,33 +1,47 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import Entypo from "@expo/vector-icons/Entypo";
-import DateTimePicker, {
-  DateTimePickerEvent,
-  DateTimePickerAndroid,
-} from "@react-native-community/datetimepicker";
-import React, { useState } from "react";
+import CalendarToggleButton from "./CalendarToggleButton";
 
 type HeaderListDateScheduleProps = {
   currentDate: Date;
+  setDate: React.Dispatch<React.SetStateAction<Date>>;
   showCalendar: boolean;
   setShowCalendar: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function HeaderListDateSchedule({
   currentDate,
+  setDate,
   showCalendar,
   setShowCalendar,
 }: HeaderListDateScheduleProps) {
+  const incrementDate = () => {
+    const nextDay = new Date(currentDate);
+    nextDay.setDate(nextDay.getDate() + 1);
+    setDate(nextDay);
+  };
+
+  const decrementDate = () => {
+    const prevDay = new Date(currentDate);
+    prevDay.setDate(prevDay.getDate() - 1);
+    setDate(prevDay);
+  };
+
   return (
     <View style={styles.wrapper}>
-      <Entypo name="chevron-left" size={24} color="#fafafa" />
+      <CalendarToggleButton buttonType="decrement" onPress={decrementDate}/>
       <Pressable
-        style={styles.calendarButton}
+        style={({ pressed }) => [{ backgroundColor: pressed ? "transparent" : "#0a68fe"},styles.calendarButton]}
         onPress={() => setShowCalendar((prevState) => !prevState)}
       >
         <Text style={styles.dateText}>{currentDate.toDateString()}</Text>
-        <Entypo name={`chevron-${showCalendar ? "down": "up"}`} size={24} color="#fafafa" />
+        <Entypo
+          name={`chevron-${showCalendar ? "down" : "up"}`}
+          size={24}
+          color="#fafafa"
+        />
       </Pressable>
-      <Entypo name="chevron-right" size={24} color="#fafafa" />
+      <CalendarToggleButton buttonType="increment" onPress={incrementDate}/>
     </View>
   );
 }
@@ -47,13 +61,16 @@ const styles = StyleSheet.create({
   },
   calendarButton: {
     flexDirection: "row",
-    backgroundColor: "#0a68fe",
     borderRadius: 10,
-    padding: 10
+    padding: 10,
   },
   calendarView: {
     position: "absolute",
     backgroundColor: "#fafafa",
+  },
+  pressedDateButton: {
+    padding: 8,
+    borderRadius: 50
   },
   shadowProp: {
     shadowColor: "#171717",

@@ -31,6 +31,10 @@ export default function RootLayout() {
             name="employeeSchedule"
             options={{ title: "Your Schedule" }}
           />
+          <Stack.Screen
+            name="lesson/[lesson]"
+            options={{ title: "Lesson" }}
+          />
         </Stack>
       </ThemeProvider>
     </QueryProvider>

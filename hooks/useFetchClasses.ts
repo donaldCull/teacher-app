@@ -26,6 +26,7 @@ export const useFetchClasses = (classes: string[]) => {
               classTitle: res.data.name,
               subject: res.data.subject,
               lessonId: lesson.id,
+              room: lesson.room,
               start_at: new Date(lesson.start_at.date),
               end_at: new Date(lesson.end_at.date),
               timezone_type: lesson.start_at.timezone_type,
