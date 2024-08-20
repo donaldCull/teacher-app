@@ -9,7 +9,7 @@ import ErrorItem from "../common/ErrorItem";
 export default function EmployeeList() {
   const { useData } = useQuery();
   const { data, isLoading, error, fetchData } = useData<Employees>(
-    "employees?include=employment_details,classes&has_class=true",
+    "employees?include=classes,employment_details&employment_start_before=2024-07-07&has_class=true&has_lessons=true",
   );
 
   if (error) {

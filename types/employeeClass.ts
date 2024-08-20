@@ -1,3 +1,15 @@
+export type ClassLessons = {
+  classId: string;
+  classTitle: string;
+  subject: string;
+  lessonId: string;
+  start_at: Date;
+  end_at: Date;
+  timezone_type: number;
+  timezone: string;
+  students: Students;
+}
+
 export type EmployeeClass = {
   id: string;
   name: string;

@@ -1,10 +1,11 @@
-import { ClassData } from "@/types/employeeClass";
-import { FlatList } from "react-native";
+import { ClassData, ClassLessons } from "@/types/employeeClass";
+import { FlatList, View } from "react-native";
 import EmptyListItem from "../common/EmptyListItem";
 import ScheduleItem from "./ScheduleItem";
+import HeaderListDateSchedule from "./HeaderListDateSchedule";
 
 type ScheduleListProps = {
-  schedule: ClassData[];
+  schedule: ClassLessons[];
 };
 
 export default function ScheduleList({ schedule }: ScheduleListProps) {
@@ -12,8 +13,9 @@ export default function ScheduleList({ schedule }: ScheduleListProps) {
     <FlatList
       data={schedule}
       ListEmptyComponent={<EmptyListItem />}
+      ListHeaderComponent={<HeaderListDateSchedule />}
       renderItem={({ item }) => <ScheduleItem lesson={item} />}
-      keyExtractor={(lesson) => lesson.data.id}
+      keyExtractor={(lesson) => lesson.lessonId}
     />
   );
 }
