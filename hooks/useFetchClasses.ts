@@ -36,7 +36,6 @@ export const useFetchClasses = (classes: string[]) => {
           }
         }
       }
-      // data.sort((a, b) => a.date - b.date);
       setData(employeeClassList.sort((a, b) => a.start_at.getTime() - b.start_at.getTime()));
     } catch (error) {
       setError(error);

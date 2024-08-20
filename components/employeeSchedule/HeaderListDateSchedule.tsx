@@ -31,6 +31,7 @@ export default function HeaderListDateSchedule({
     <View style={styles.wrapper}>
       <CalendarToggleButton buttonType="decrement" onPress={decrementDate}/>
       <Pressable
+        testID="showCalendarButton"
         style={({ pressed }) => [{ backgroundColor: pressed ? "transparent" : "#0a68fe"},styles.calendarButton]}
         onPress={() => setShowCalendar((prevState) => !prevState)}
       >
